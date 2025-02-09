@@ -1,0 +1,19 @@
+@import url(https://db.onlinewebfonts.com/c/9b2a654c7eb3dd65f9bcae692dd167c3?family=Founders+Grotesk+X-Cond+Med);
+@import url(https://db.onlinewebfonts.com/c/363df8f171afbf83e5aac11fcf6f06f6?family=Founders+Grotesk);
+@import url(https://db.onlinewebfonts.com/c/8f350727df42f2b6dc810416b1e23d69?family=Founders+Grotesk+X-Cond+Reg);
+@import url(https://db.onlinewebfonts.com/c/2b84539c32b7d1a739b9651ad495b4ef?family=Founders+Grotesk+X-Cond+SmBd);
+@import "../../node_modules/leaflet/dist/leaflet.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .ctransition {
+        @apply ease-in-out duration-200;
+    }
+
+    .cscrollbar {
+        @apply scrollbar-thin scrollbar-thumb-clgreen scrollbar-track-cblack
+    }
+}
