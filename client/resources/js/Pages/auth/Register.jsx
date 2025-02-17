@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react'
 import React from 'react'
 import FormError from '../components/FormError'
 import Logo from '../components/Logo'
+import HeroSlide from '../components/HeroSlide'
 
 const Register = () => {
     const { data, setData, post, errors } = useForm({
@@ -22,14 +23,12 @@ const Register = () => {
 
   return (
     <div className='grid grid-cols-2 w-full h-screen'>
-        <div className="hero__image hidden md:block">
-            <div className="image__wrapper overflow-hidden h-full">
-                <img src="/image.jpg" alt="" className='w-full h-full object-cover'/>
-            </div>
+        <div className="hero__image hidden md:block bg-cblack">
+            <HeroSlide />
         </div>
         <div className="register__form h-screen flex justify-center items-center flex-col col-span-2 md:col-span-1 pt-20 lg:pt-0 overflow-auto cscrollbar">
-            <Logo size={150}/>
-            <h1 className='text-5xl lg:text-6xl md:4xl font-bold font-font1Smbd'>Create an account</h1>
+            <Logo color='light'/>
+            <h1 className='text-5xl lg:text-6xl md:4xl font-bold font-font1Smbd lg:mt-6'>Create an account</h1>
             <form action="#" className='mt-16 w-full px-[2rem] md:px-[6rem]'>
                 <div className="name grid grid-cols-6 md:gap-1 lg:gap-4 mb-6">
                     <div className="form-field flex flex-col col-span-6 md:col-span-3 lg:col-span-2 mb-6 lg:mb-0">

@@ -76,19 +76,19 @@ const Edit = ( { isEditClicked, setIsEditClicked, user } ) => {
                     {errors.first_name && <FormError error={errors.first_name}/>}
                 </div>
                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                    <input type="text" id="middle_name" value={data.middle_name} onChange={e => setData('middle_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder={user.middle_name}/>
+                    <input type="text" id="middle_name" value={data.middle_name} onChange={e => setData('middle_name', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} placeholder={user.middle_name} disabled={user.middle_name == null ? true : false}/>
                     {errors.middle_name && <FormError error={errors.middle_name}/>}
                 </div>
                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                    <input type="text" id="last_name" value={data.last_name} onChange={e => setData('last_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder={user.last_name}/>
+                    <input type="text" id="last_name" value={data.last_name} onChange={e => setData('last_name', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} placeholder={user.last_name} disabled={user.middle_name == null ? true : false}/>
                     {errors.last_name && <FormError error={errors.last_name}/>}
                 </div>
                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                    <input type="date" id="birthday" value={data.birthday} onChange={e => setData('birthday', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl' required={true}/>
+                    <input type="date" id="birthday" value={data.birthday} onChange={e => setData('birthday', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} disabled={user.middle_name == null ? true : false}/>
                     {errors.birthday && <FormError error={errors.birthday}/>}
                 </div>
                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                    <input type="text" id="mobile" value={data.mobile} onChange={e => setData('mobile', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl' required={true} placeholder={user.mobile}/>
+                    <input type="text" id="mobile" value={data.mobile} onChange={e => setData('mobile', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} placeholder={user.mobile} disabled={user.middle_name == null ? true : false}/>
                     {errors.mobile && <FormError error={errors.mobile}/>}
                 </div>
                 <div className="form-field flex flex-col items-center">

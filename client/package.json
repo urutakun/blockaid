@@ -25,10 +25,12 @@
     "dependencies": {
         "@iconify/iconify": "^3.1.1",
         "@splidejs/react-splide": "^0.7.12",
+        "chart.js": "^4.4.7",
         "dotenv": "^16.4.7",
         "lenis": "^1.1.20",
         "motion": "^12.0.6",
         "qrcode.react": "^4.2.0",
+        "react-chartjs-2": "^5.3.0",
         "react-leaflet": "^4.2.1",
         "tailwind-scrollbar": "^3.1.0"
     }

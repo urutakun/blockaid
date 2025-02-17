@@ -1,17 +1,21 @@
-import { useForm } from '@inertiajs/react'
+import { useForm, usePage } from '@inertiajs/react'
 import React from 'react'
 import FormError from '../components/FormError';
 
 const CreateAdmin = ({ setIsRegisterClicked }) => {
+    const { props } = usePage();
+    console.log(props);
     const { data, setData, errors, post } = useForm({
-        'first_name' : '',
-        'email' : '',
-        'password' : '',
-        'password_confirmation': ''
+        first_name : '',
+        email : '',
+        role: '',
+        password : '',
+        password_confirmation: ''
     });
 
-    const handleSubmit = () => {
-        return;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post('/admin/register');
     }
 
   return (
@@ -20,7 +24,7 @@ const CreateAdmin = ({ setIsRegisterClicked }) => {
             <div className="exit absolute top-4 right-4 bg-gray-500 rounded-full text-cwhite p-1" onClick={() => setIsRegisterClicked(false)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></svg>
             </div>
-            <form className='mt-24 w-full px-[2rem] md:px-[6rem]'>
+            <form className='mt-16 w-full px-[2rem] md:px-[6rem]'>
                 <p className='text-2xl font-bold mb-10'>Register Admin</p>
                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
                     <input type="text" id="first_name" value={data.first_name} onChange={e => setData('first_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder='Name'/>
@@ -29,6 +33,14 @@ const CreateAdmin = ({ setIsRegisterClicked }) => {
                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
                     <input type="text" id="email" value={data.email} onChange={e => setData('email', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder='Email'/>
                     {errors.email && <FormError error={errors.email}/>}
+                </div>
+                <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
+                    <select name="role" id="role" required={true} value={data.role} onChange={e => setData('role', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' >
+                        <option value=''>Please Select Role</option>
+                        <option value='dswd'>DSWD</option>
+                        <option value='barangay'>Barangay</option>
+                    </select>
+                    {errors.role && <FormError error={errors.role}/>}
                 </div>
                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
                     <input type="password" id="password" value={data.password} onChange={e => setData('password', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder='Password'/>

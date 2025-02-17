@@ -1,7 +1,6 @@
 import React from 'react'
 import Developers from "./assets/developers";
 import slide_images from "./assets/slide";
-import Footer from './components/Footer';
 import { motion } from "motion/react";
 import { Splide, SplideSlide} from "@splidejs/react-splide"
 import "@splidejs/react-splide/css";
@@ -59,8 +58,8 @@ const About = () => {
 
   return (
     <div className='py-6 px-[1rem] flex flex-col items-center w-full mt-[5rem] md:mt-[8rem]'>
-      <div className="about text-center lg:px-[10rem] mt-16">
-        <h1 className='font-bold text-6xl mb-24 font-font1Smbd'>About Us</h1>
+      <div className="about text-center lg:px-[10rem] my-16">
+        <h1 className='font-bold text-6xl mb-16 font-font1Smbd'>About Us</h1>
         <p className='text-2xl'>We are a dedicated team committed to revolutionize and modernize disaster relief using blockchain for transparency and efficiency. Our platform connects governments and communities, ensuring real-time tracking and fair aid distribution.</p>
       </div>
 

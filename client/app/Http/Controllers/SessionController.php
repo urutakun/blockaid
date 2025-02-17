@@ -27,20 +27,20 @@ class SessionController extends Controller
             // Redirect based on role
             if ($user->role === 'admin') {
                 return redirect('admin/beneficiaries');
-            } else {
+            }
+            elseif ($user->role == 'dswd'){
+                return redirect('dswd/dashboard');
+            }
+            else {
                 return redirect('/');
             }
-
-            /*
-            elseif ($user->role === 'DSWD') {
-                return redirect()->route('dswd.dashboard');
-            } elseif ($user->role === 'LGU') {
-                return redirect()->route('lgu.dashboard');
-            }
-            */
 
         }
 
         return back()->withErrors(['email' => 'Invalid credentials']);
+    }
+
+    public function destroy(){
+        return Auth::logout();
     }
 }

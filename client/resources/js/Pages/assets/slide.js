@@ -15,6 +15,18 @@ const slide_images = [
         "id": 4,
         "image": "4.png"
     },
+    {
+        "id": 5,
+        "image": "5.png"
+    },
+    {
+        "id": 6,
+        "image": "6.png"
+    },
+    {
+        "id": 7,
+        "image": "7.png"
+    },
 ]
 
 

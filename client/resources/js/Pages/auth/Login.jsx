@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react'
 import React from 'react'
 import FormError from '../components/FormError'
 import Logo from '../components/Logo'
+import HeroSlide from '../components/HeroSlide'
 
 const Register = () => {
     const { data, setData, post, errors } = useForm({
@@ -16,14 +17,15 @@ const Register = () => {
 
   return (
     <div className='grid grid-cols-2 w-full h-screen'>
-        <div className="hero__image hidden md:block">
-            <div className="image__wrapper overflow-hidden h-full">
-                <img src="/image.jpg" alt="" className='w-full h-full object-cover'/>
-            </div>
+        <div className="hero__image hidden md:block bg-cblack">
+            {/* <div className="image__wrapper overflow-hidden h-full">
+                <img src="/splide__images/4.png" alt="" className='w-full h-full object-cover'/>
+            </div> */}
+            <HeroSlide />
         </div>
         <div className="register__form h-screen flex justify-center items-center flex-col col-span-2 md:col-span-1">
-            <Logo size={150}/>
-            <h1 className='text-5xl lg:text-6xl md:4xl font-bold font-font1Smbd'>Welcome Back!</h1>
+            <Logo color='light'/>
+            <h1 className='text-5xl lg:text-6xl md:4xl font-bold font-font1Smbd mt-16'>Welcome Back!</h1>
             <div className="blockaid__description text-center lg:mx-40 md:mx-38 mx-20 mt-8">
                 <p>BlockAid tracks relief with blockchain, ensuring transparent and efficient aid distribution.</p>
             </div>

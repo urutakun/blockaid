@@ -10,7 +10,7 @@ const Profile = () => {
     const user = props.auth.user;
     const [isEditClicked, setIsEditClicked] = useState(false);
 
-    const full_name = `${user.first_name} ${user.middle_name} ${user.last_name}`;
+    const full_name = `${user.first_name} ${user.middle_name !== null ? user.middle_name : ''} ${user.last_name !== null ? user.last_name : ''}`;
     const date = new Date(user.birthday);
     const birthday = `${date.toLocaleString('en-US', {month: 'long'})} ${date.getDate()}, ${date.getFullYear()}`
 
@@ -19,6 +19,7 @@ const Profile = () => {
         name: full_name,
         email: user.email,
         birthday: user.birthday,
+        mobile: user.mobile,
     });
 
     return (
@@ -30,7 +31,7 @@ const Profile = () => {
             <div className="profile-wrapper h-full  mt-16 grid grid-cols-2 px-6 lg:w-[70vw] mx-auto pb-6 items-center">
                 <div className="id flex flex-col justify-center items-center p-8 col-span-2 lg:col-span-1">
                     <div className="profile_image">
-                        <div className="profile_image_wrapper overflow-hidden rounded-full w-[150px] h-[150px] md:w-[200px] md:h-[200px] mb-6 border border-cblack">
+                        <div className="profile_image_wrapper overflow-hidden rounded-full w-[150px] h-[150px] md:w-[200px] md:h-[200px] mb-6 border border-gray-500">
                             {/* FIX THE IMAGE IN THE NAV SECTION */}
                             <img
                                 src={user && `${window.location.origin}/storage/uploads/${user.image}`}
@@ -69,13 +70,13 @@ const Profile = () => {
                             {user.email}
                         </p>
                     </div>
-                    <div className="info-block w-full mb-8">
+                    <div className={`info-block w-full mb-8 ${user.birthday == null ? 'hidden' : ''}`}>
                         <label htmlFor="birthday" className="mb-8">Birthday:</label>
                         <p id="birthday" className="py-2 border border-cblack rounded-lg px-2 mt-4">
                             {birthday}
                         </p>
                     </div>
-                    <div className="info-block w-full mb-8">
+                    <div className={`info-block w-full mb-8 ${user.mobile == null ? 'hidden' : ''}`}>
                         <label htmlFor="mobile" className="mb-8">Phone Number:</label>
                         <p id="mobile" className="py-2 border border-cblack rounded-lg px-2 mt-4">
                             {user.mobile}

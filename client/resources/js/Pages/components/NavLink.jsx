@@ -6,8 +6,8 @@ const NavLink = ({ action, icon, name }) => {
 
   return (
     <div>
-        <a href={`/${action}`} className={`flex items-center border ctransition bg-cgray hover:bg-cgreen hover:border-cblack py-2 px-2 rounded-md  ${url.startsWith(`/${action}`) ? 'bg-clgreen border-cblack' : 'bg-cgray'
-        } capitalize`}><div className='bg-cwhite p-1 mr-2 rounded-md'>{icon}</div>{name}</a>
+        <a href={`/${action}`} className={`md:mx-2 lg:mx-0 flex items-center border ctransition bg-cgray hover:bg-cgreen hover:border-cblack md:text-sm lg:text-lg md:py-1 md:px-1 lg:py-2 lg:px-2 rounded-md  ${url.startsWith(`/${action}`) ? 'bg-clgreen border-cblack' : 'bg-cgray'
+        } capitalize`}><div className='bg-cwhite p-1 md:mr-1 lg:mr-2 rounded-md'>{icon}</div>{name}</a>
     </div>
   )
 }
