@@ -114,7 +114,7 @@ const dswdDashboard = () => {
                         </div>
                     </div>
                     <div className="yearly__shipments col-span-3 lg:col-span-2 mt-6 lg:mt-0">
-                        <div className="graph__title font-bold">
+                        <div className="graph__title font-lighter text-gray-500">
                             <p>Yearly Shipments</p>
                         </div>
                         <div className="h-[300px] mt-6">
@@ -122,7 +122,7 @@ const dswdDashboard = () => {
                         </div>
                     </div>
                     <div className="pie__chart col-span-3 lg:col-span-1 mt-6">
-                        <div className="graph__title font-bold">
+                        <div className="graph__title font-lighter text-gray-500">
                             <p>Success & Discrepancies</p>
                         </div>
                         <div className="h-[300px] mt-6">
@@ -130,7 +130,7 @@ const dswdDashboard = () => {
                         </div>
                     </div>
                     <div className="line__chart col-span-3 lg:col-span-2 mt-6 py-6 lg:py-0">
-                        <div className="graph__title font-bold">
+                        <div className="graph__title font-lighter text-gray-500">
                             <p>Shipment Trends</p>
                         </div>
                         <div className="h-[300px] mt-6">

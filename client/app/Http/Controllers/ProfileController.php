@@ -61,7 +61,7 @@ class ProfileController extends Controller
             $user->mobile = request()->mobile;
         }
 
-        $user->save();  
+        $user->save();
 
         return redirect('/profile');
 

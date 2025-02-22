@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import DeleteModal from './DeleteModal';
+import EditData from './EditData';
 
 const Table = ( {beneficiaries} ) => {
+    const [id, setId] = useState(0);
+    const [user, setUser] = useState([])
+    const [isDeleteClicked, setIsDeleteClicked] = useState(false);
+    const [isEditClicked, setIsEditClicked] = useState(false);
+
+    const handleDelete = (id) => {
+        setId(id);
+        setIsDeleteClicked(true);
+    }
+
+    const handleEdit  = (id) => {
+        setId(id);
+        setIsEditClicked(true);
+    }
+
+
+    useEffect(() => {
+        const user = beneficiaries.filter((beneficiary) => beneficiary.id == id)[0];
+        setUser(user);
+    }, [id])
+
+
   return (
         <div className="w-[90vw] md:w-full overflow-x-auto cscrollbar">
+            {/* DELETE MODAL */}
+            <DeleteModal isDeleteClicked={isDeleteClicked} setIsDeleteClicked={setIsDeleteClicked} user={user} url="admin/beneficiaries"/>
+            <EditData isEditClicked={isEditClicked} setIsEditClicked={setIsEditClicked} user={user} url="admin/beneficiaries"/>
             <table className='w-full text-xs lg:text-base text-left'>
                 <thead className='text-cwhite uppercase bg-cblack'>
                     <tr>
@@ -14,9 +41,6 @@ const Table = ( {beneficiaries} ) => {
                         </th>
                         <th scope='col' className='px-6 py-3'>
                             Birthday
-                        </th>
-                        <th scope='col' className='px-6 py-3'>
-                            Address
                         </th>
                         <th scope='col' className='px-6 py-3'>
                             Phone Number
@@ -46,17 +70,14 @@ const Table = ( {beneficiaries} ) => {
                                     {birthday}
                                 </td>
                                 <td className="px-6 py-4">
-                                    Null
-                                </td>
-                                <td className="px-6 py-4">
                                     {beneficiary.mobile}
                                 </td>
                                 <td className="px-6 py-4">
                                     {beneficiary.email}
                                 </td>
                                 <td className="px-6 py-4 space-x-6 flex">
-                                    <button className='px-6 py-2 bg-clgreen hover:bg-cgreen rounded-lg ctransition'>Edit</button>
-                                    <button className='px-6 py-2 bg-red-500 text-cwhite rounded-lg hover:bg-red-600 ctransition'>Delete</button>
+                                    <button className='px-6 py-2 bg-clgreen hover:bg-cgreen rounded-lg ctransition' onClick={() => handleEdit(beneficiary.id)}>Edit</button>
+                                    <button className='px-6 py-2 bg-red-500 text-cwhite rounded-lg hover:bg-red-600 ctransition' onClick={() => handleDelete(beneficiary.id)}>Delete</button>
                                 </td>
                             </tr>
                         )})}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules\Password;
 
 class AdminPanelController extends Controller
@@ -15,11 +16,12 @@ class AdminPanelController extends Controller
     }
 
     public function create(){
-        $admins = User::whereIn('role', ['admin', 'dswd', 'barangay'])->get();
+        $admins = User::whereIn('role', ['admin', 'dswd', 'bdrrm'])->get();
         return inertia('admin/UserManagement', ['admins' => $admins]);
     }
 
     public function store(){
+        // dd(request());
         // validate
         $validated = request()->validate([
             'first_name' => ['required', 'max:255'],
@@ -28,11 +30,11 @@ class AdminPanelController extends Controller
             'mobile' => ['nullable'],
             'birthday' => ['nullable'],
             'email' => ['required', 'email'],
-            'role' => ['required', 'in:dswd,barangay'],
+            'role' => ['required', 'in:dswd,bdrrm'],
             'password' => ['required', Password::default(), 'confirmed'],
         ]);
 
-        $user = User::create([
+        User::create([
             'first_name' => $validated['first_name'],
             'middle_name' => $validated['middle_name'] ?? null,
             'last_name' => $validated['last_name'] ?? null,
@@ -44,6 +46,42 @@ class AdminPanelController extends Controller
         ]);
 
         return redirect('/admin/user-management')->with('success', 'Admin created successfully');
+    }
 
+    public function edit($id){
+        $user = User::find($id);
+
+        if(!$user){
+            return Redirect::back()->with('error', 'Record Not Found');
+        }
+
+        request()->validate([
+            'first_name' => ['nullable', 'max:255'],
+            'middle_name' => ['nullable', 'max:255'],
+            'last_name' => ['nullable', 'max:255'],
+            'email' => ['nullable', 'email'],
+            'mobile' => ['nullable', 'digits:11'],
+            'birthday' => ['nullable', 'date'],
+            'password' => ['nullable', Password::default(), 'confirmed']
+        ]);
+
+        $user->update(array_filter(request()->only([
+            'first_name', 'middle_name', 'last_name', 'email', 'mobile', 'birthday', 'password'
+        ])));
+
+        $user->save();
+
+        return Redirect::back()->with('success', 'Record updated successfully!');
+    }
+
+    public function destroy($id){
+        $user = User::find($id);
+
+        if(!$user){
+            return Redirect::back()->with('error', 'Record Not Found');
+        }
+
+        $user->delete();
+            return Redirect::back()->with('success', 'Record Deleted Successfully');
     }
 }

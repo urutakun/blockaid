@@ -31,6 +31,9 @@ class SessionController extends Controller
             elseif ($user->role == 'dswd'){
                 return redirect('dswd/dashboard');
             }
+            elseif ($user->role == 'bdrrm'){
+                return redirect('bdrrm/dashboard');
+            }
             else {
                 return redirect('/');
             }

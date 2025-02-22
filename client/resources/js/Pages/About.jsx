@@ -8,69 +8,56 @@ import "@splidejs/react-splide/css";
 
 const About = () => {
 
-  const devAnimationVariants = {
-    hide: {
-        opacity: 0,
-        y: 20
-    },
-    show: (index) => ({
-        opacity: 1,
-        y: 0,
-        transition: {
-            type: 'tween',
-            duration: 1.5,
-            delay: 0.05 * index,
-            ease: "easeInOut"
-        }
-    })
-  }
+//*   FADE IN VARIANTS
 
-  const itemsVariants  = {
-    hide: {
-        opacity: 0,
-        y: 20
-    },
-    show: {
-        opacity: 1,
-        y: 0,
+const containerVariants = {
+    hidden: { opacity: 0 },
+    show: (delay) => ({
+    opacity: 1,
         transition: {
-            duration: 1,
-            staggerChildren: 0.5,
-            ease: "easeInOut"
-        }
-    }
-  }
+        staggerChildren: 0.2,
+        delayChildren: delay,
+        ease: "easeInOut",
+    },
+}),
+}
 
-  const splideVariants = {
-    hide: {
-        opacity: 0,
-        y: 20
-    },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 1,
-            ease: "easeInOut"
-        }
-    }
-  }
+const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.9 } },
+};
+
 
   return (
     <div className='py-6 px-[1rem] flex flex-col items-center w-full mt-[5rem] md:mt-[8rem]'>
-      <div className="about text-center lg:px-[10rem] my-16">
-        <h1 className='font-bold text-6xl mb-16 font-font1Smbd'>About Us</h1>
-        <p className='text-2xl'>We are a dedicated team committed to revolutionize and modernize disaster relief using blockchain for transparency and efficiency. Our platform connects governments and communities, ensuring real-time tracking and fair aid distribution.</p>
-      </div>
+      <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      custom={0.5}
+      viewport={{ once: true }}
+      className="about text-center lg:px-[10rem] my-16">
+        <div className="overflow-hidden py-2 mb-16">
+            <motion.h1
+            variants={itemVariants}
+            className='font-bold text-6xl font-font1Smbd'>About Us</motion.h1>
+        </div>
+        <div className="overflow-hidden py-2">
+            <motion.p
+            variants={itemVariants}
+            className='text-2xl'>We are a dedicated team committed to revolutionize and modernize disaster relief using blockchain for transparency and efficiency. Our platform connects governments and communities, ensuring real-time tracking and fair aid distribution.</motion.p>
+        </div>
+      </motion.div>
 
-      <div className="slider-wrapper flex justify-center items-center mt-24 w-full mx-10">
+      <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      custom={0.6}
+      className="slider-wrapper flex justify-center items-center mt-24 w-full mx-10">
             <motion.div className="slide__container overflow-hidden"
-            variants={splideVariants}
-            initial="hide"
-            whileInView="show"
-            viewport={{
-                once: true
-            }}
+            variants={itemVariants}
             >
                 <Splide aria-label='slider'
                 options={{
@@ -93,49 +80,39 @@ const About = () => {
                     ))}
                 </Splide>
             </motion.div>
-      </div>
+      </motion.div>
 
       <div className="developers mt-[10rem] mx-auto">
         <div className="header">
-            <ul
+            <motion.ul
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            custom={0.3}
             className='flex items-center space-x-3'>
                 <motion.li
-                variants={itemsVariants}
-                initial="hide"
-                whileInView="show"
-                viewport={{
-                    once: true
-                }}
+                variants={itemVariants}
                 className='px-6 py-1 border border-cblack rounded-lg uppercase'><span>Meet</span></motion.li>
                 <motion.li
-                variants={itemsVariants}
-                initial="hide"
-                whileInView="show"
-                viewport={{
-                    once: true
-                }}
+                variants={itemVariants}
                 className='px-6 py-1 border border-cblack rounded-lg uppercase'><span>The</span></motion.li>
                 <motion.li
-                variants={itemsVariants}
-                initial="hide"
-                whileInView="show"
-                viewport={{
-                    once: true
-                }}
+                variants={itemVariants}
                 className='px-6 py-1 border border-cblack rounded-lg uppercase bg-clgreen'><span>Team</span></motion.li>
-            </ul>
+            </motion.ul>
         </div>
-        <div className="devs grid grid-cols-4 w-full text-cwhite gap-8 mt-[5rem] px-auto mx-auto">
+        <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        custom={0.4}
+        className="devs grid grid-cols-2 lg:grid-cols-4 w-full text-cwhite gap-8 mt-[5rem] px-auto mx-auto">
             {Developers.map((dev, index) => {
                 return(
                     <motion.div
-                    variants={devAnimationVariants}
-                    initial="hide"
-                    whileInView="show"
-                    viewport={{
-                        once: true
-                    }}
-                    custom={index}
+                    variants={itemVariants}
                     className='developer bg-cblack md:w-[300px] lg:w-[350px] rounded-2xl overflow-hidden col-span-4 md:col-span-2 lg:col-span-1' key={dev.id}>
                         <div className="dev__img-container bg-clgreen md:h-[350px] h-[400px] relative flex justify-center rounded-xl">
                             <div className="dev__img-wrapper md:h-[300px] h-[350px] absolute bottom-0">
@@ -149,7 +126,7 @@ const About = () => {
                     </motion.div>
                 )
             })}
-        </div>
+        </motion.div>
       </div>
     </div>
   )

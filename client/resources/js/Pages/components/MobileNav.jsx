@@ -49,7 +49,7 @@ const MobileNav = ({ user, setIsClicked }) => {
         animate: {
             y: 0,
             transition: {
-                delay: 0.5,
+                delay: 0.4,
                 duration: 0.7,
                 ease: [0, 0.55, 0.45, 1]
             }
@@ -62,6 +62,18 @@ const MobileNav = ({ user, setIsClicked }) => {
             }
         }
     }
+
+    const containerVariants = {
+		hidden: { opacity: 0 },
+		show: (delay) => ({
+		opacity: 1,
+			transition: {
+			staggerChildren: 0.2,
+			delayChildren: delay,
+			ease: "easeInOut",
+		},
+	}),
+};
 
 
     return (
@@ -76,7 +88,7 @@ const MobileNav = ({ user, setIsClicked }) => {
                 <Logo color='dark'/>
                 <div className="exit uppercase cursor-pointer hover:underline font-bold text-cwhite" onClick={handleCloseClick}><p>close</p></div>
                </div>
-                    <motion.ul
+                    <ul
                     className="mobile__nav-links text-6xl text-center font-bold font-font1Smbd space-y-8 mt-32 w-full px-14">
                         {(!user || (user && user.role === "beneficiary")) && (
                             <>
@@ -146,7 +158,7 @@ const MobileNav = ({ user, setIsClicked }) => {
                                 </div>
                             </>
                         )}
-                    </motion.ul>
+                    </ul>
 
                 <p className="text-sm text-center text-cwhite absolute left-1/2 -translate-x-1/2 bottom-8">
                     &copy; Copyright {year} By Blockaid x uruta 💚

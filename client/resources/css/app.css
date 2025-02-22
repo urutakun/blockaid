@@ -16,4 +16,8 @@
     .cscrollbar {
         @apply scrollbar-thin scrollbar-thumb-clgreen scrollbar-track-cblack
     }
+
+    .cheader {
+        @apply absolute left-1/2 top-40 -translate-y-1/2 md:-translate-y-0 md:-translate-x-0 -translate-x-1/2 md:top-6 md:left-6
+    }
 }

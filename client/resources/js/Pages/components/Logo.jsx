@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const Logo = ({ color }) => {
     const { props } = usePage();
     const user = props.auth.user;
-    const home = user && user.role == 'beneficiary' ? '/' : user && user.role == 'admin' ? '/admin/beneficiaries' : user && user.role == 'dswd' ? '/dswd/dashboard' : user && user.role == 'Barangay'? '/barangay/dashboard' : '/';
+    const home = user && user.role == 'beneficiary' ? '/' : user && user.role == 'admin' ? '/admin/beneficiaries' : user && user.role == 'dswd' ? '/dswd/dashboard' : user && user.role == 'bdrrm'? '/bdrrm/dashboard' : '/';
 
     return (
         <div className="logo">

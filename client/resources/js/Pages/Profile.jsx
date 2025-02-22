@@ -84,7 +84,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            {isEditClicked && <EditProfile isEditClicked={isEditClicked} setIsEditClicked={setIsEditClicked} user={user}/>}
+            <EditProfile isEditClicked={isEditClicked} setIsEditClicked={setIsEditClicked} user={user}/>
         </div>
     );
 };

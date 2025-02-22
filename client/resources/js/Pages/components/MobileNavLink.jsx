@@ -14,7 +14,7 @@ const MobileNavLink = ({ name, action }) => {
         animate: {
             y: 0,
             transition: {
-                delay: 0.5,
+                delay: 0.4,
                 duration: 0.7,
                 ease: [0, 0.55, 0.45, 1]
             }
