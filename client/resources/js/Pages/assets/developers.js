@@ -20,7 +20,7 @@ const developers = [
     {
         "id" : 4,
         "name" : "Jhonatan Cila",
-        "role" : "Programmer",
+        "role" : "Data Analyst",
         "image" : "jhonatan.png"
     }
 ];
