@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="/storage/assets/logo-dark.png" width="400" alt="BlockAid Logo"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="/assets/logo-dark.png" width="400" alt="BlockAid Logo"></a></p>
 
 ## About BlockAid
 
