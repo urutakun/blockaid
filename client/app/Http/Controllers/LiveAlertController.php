@@ -18,8 +18,14 @@ class LiveAlertController extends Controller
             'days' => 14
         ]);
 
-        $weather = $response->json();
+        $alert_response = Http::get('http://api.weatherapi.com/v1/alerts.json', [
+            'key' => $weatherAPIKey,
+            'q' => '8.1836,126.356'
+        ]);
 
-        return inertia('LiveAlert', ['weather' => $weather]);
+        $weather = $response->json();
+        $alert = $alert_response->json();
+
+        return inertia('LiveAlert', ['weather' => $weather, 'alerts' => $alert]);
     }
 }

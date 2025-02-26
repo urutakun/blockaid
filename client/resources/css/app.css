@@ -2,7 +2,6 @@
 @import url(https://db.onlinewebfonts.com/c/363df8f171afbf83e5aac11fcf6f06f6?family=Founders+Grotesk);
 @import url(https://db.onlinewebfonts.com/c/8f350727df42f2b6dc810416b1e23d69?family=Founders+Grotesk+X-Cond+Reg);
 @import url(https://db.onlinewebfonts.com/c/2b84539c32b7d1a739b9651ad495b4ef?family=Founders+Grotesk+X-Cond+SmBd);
-@import "../../node_modules/leaflet/dist/leaflet.css";
 
 @tailwind base;
 @tailwind components;
@@ -18,6 +17,6 @@
     }
 
     .cheader {
-        @apply absolute left-1/2 top-40 -translate-y-1/2 md:-translate-y-0 md:-translate-x-0 -translate-x-1/2 md:top-6 md:left-6
+        @apply absolute left-1/2 top-14 -translate-y-1/2 md:-translate-y-0 md:-translate-x-0 -translate-x-1/2 md:top-6 md:left-6
     }
 }

@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import BeneficiaryTable from "../components/BeneficiaryTable";
 
-const bdrrmDashboard = ({ beneficiaries }) => {
+const bdrrmDashboard = ({ beneficiaries, requests }) => {
+    const [reliefRequest, setReliefRequest] = useState(0);
+
+
+    useEffect(() => {
+        const relief_request = requests && requests && requests.filter((req) => req.status == 'pending').length;
+        setReliefRequest(relief_request);
+    }, [reliefRequest])
+
   return (
     <div>
         <Nav />
@@ -20,10 +28,10 @@ const bdrrmDashboard = ({ beneficiaries }) => {
                 <div className="pending flex flex-col col-span-3 md:col-span-1">
                     <span className='text-gray-500 text-sm md:text-base lg:text-xl'>Pending Requests</span>
                     <div className="pending_stat bg-clgreen text-cwhite flex-1 rounded-xl mt-3 flex flex-col justify-center items-center p-2">
-                        {/* <div className="stat">
-                            <p>9,999</p>
-                        </div> */}
-                        <span className='lg:mt-4 text-base text-gray-500'>No Pending Requests</span>
+                        <div className={`stat ${reliefRequest == 0 ? 'hidden' : '' } text-cblack md:text-4xl lg:text-6xl md:font-bold`}>
+                            <p>{reliefRequest}</p>
+                        </div>
+                        <span className='lg:mt-4 text-base text-gray-500'>{reliefRequest == 0 ? 'No' : ''} Pending Requests</span>
                     </div>
                 </div>
                 <div className="recent flex flex-col col-span-3 md:col-span-1">

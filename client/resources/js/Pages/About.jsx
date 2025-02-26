@@ -45,7 +45,7 @@ const itemVariants = {
         <div className="overflow-hidden py-2">
             <motion.p
             variants={itemVariants}
-            className='text-2xl'>We are a dedicated team committed to revolutionize and modernize disaster relief using blockchain for transparency and efficiency. Our platform connects governments and communities, ensuring real-time tracking and fair aid distribution.</motion.p>
+            className='text-lg lg:text-2xl'>We are a dedicated team committed to revolutionize and modernize disaster relief using blockchain for transparency and efficiency. Our platform connects governments and communities, ensuring real-time tracking and fair aid distribution.</motion.p>
         </div>
       </motion.div>
 
@@ -82,7 +82,7 @@ const itemVariants = {
             </motion.div>
       </motion.div>
 
-      <div className="developers mt-[10rem] mx-auto">
+      <div className="developers mt-[16rem] mx-auto">
         <div className="header">
             <motion.ul
             variants={containerVariants}
@@ -93,13 +93,13 @@ const itemVariants = {
             className='flex items-center space-x-3'>
                 <motion.li
                 variants={itemVariants}
-                className='px-6 py-1 border border-cblack rounded-lg uppercase'><span>Meet</span></motion.li>
+                className='px-6 py-1 border border-cblack rounded-lg uppercase text-lg lg:text-xl'><span>Meet</span></motion.li>
                 <motion.li
                 variants={itemVariants}
-                className='px-6 py-1 border border-cblack rounded-lg uppercase'><span>The</span></motion.li>
+                className='px-6 py-1 border border-cblack rounded-lg uppercase text-lg lg:text-xl'><span>The</span></motion.li>
                 <motion.li
                 variants={itemVariants}
-                className='px-6 py-1 border border-cblack rounded-lg uppercase bg-clgreen'><span>Team</span></motion.li>
+                className='px-6 py-1 border border-cblack rounded-lg uppercase bg-clgreen text-lg lg:text-xl'><span>Team</span></motion.li>
             </motion.ul>
         </div>
         <motion.div

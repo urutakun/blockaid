@@ -46,6 +46,9 @@ Route::put('admin/user-management/edit/{id}', [AdminPanelController::class, 'edi
 
 // DSWD
 Route::get('/dswd/dashboard', [DSWDPanelController::class, 'index'])->middleware('auth');
+Route::get('/dswd/shipments', [DSWDPanelController::class, 'show'])->middleware('auth');
 
 // BDRRM
 Route::get('/bdrrm/dashboard', [BDRRMController::class, 'index'])->middleware('auth');
+Route::get('/bdrrm/request', [BDRRMController::class, 'showRequests']);
+Route::post('/bdrrm/request', [BDRRMController::class, 'store']);

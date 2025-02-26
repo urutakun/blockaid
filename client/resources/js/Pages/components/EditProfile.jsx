@@ -14,6 +14,8 @@ const Edit = ( { isEditClicked, setIsEditClicked, user } ) => {
         'image': null
     })
 
+    console.log(user);
+
     const [fileName, setFileName] = useState("");
 
     if(isEditClicked){
@@ -38,10 +40,22 @@ const Edit = ( { isEditClicked, setIsEditClicked, user } ) => {
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
+            },
+            onSuccess: () => {
+                setIsEditClicked(false);
+                setTimeout(() => {
+                    setData({
+                        first_name: '',
+                        middle_name: '',
+                        last_name: '',
+                        email: '',
+                        mobile: '',
+                        birthday: '',
+                        image: null
+                    })
+                }, 2000)
             }
         })
-
-        setIsEditClicked(false);
     }
 
     const handleFileChange = (e) => {
@@ -72,11 +86,17 @@ const Edit = ( { isEditClicked, setIsEditClicked, user } ) => {
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></svg>
                     </div>
                     <form className='mt-16 w-full px-[2rem] md:px-[6rem]'>
-                        <p className='text-4xl md:text-2xl font-bold cheader'>Edit Profile</p>
+                        <p className='text-3xl md:text-2xl font-bold cheader'>Edit Profile</p>
+                        <div className='text-sm  text-red-500 mb-4 flex items-center space-x-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="text-red-500 size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            </svg>
+                            <p>Enter only the data you want to edit.</p>
+                        </div>
                         <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
                             <input type="file" id="image" onChange={(e) => handleFileChange(e)} className='hidden' required={true}/>
                             <label htmlFor="image" className='border border-dashed border-cblack rounded-lg h-[8rem] flex justify-center items-center flex-col'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-gray-500 size-10 md:size-10 text-cblue">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-gray-500 size-6 md:size-10 text-cblue">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                                 </svg>
                                 <p className='text-lg md:text-xl text-gray-500'>{fileName ? fileName : 'Upload Profile Picture'}</p>
@@ -90,11 +110,11 @@ const Edit = ( { isEditClicked, setIsEditClicked, user } ) => {
                         { user.role === 'beneficiary' && (
                         <>
                             <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                                <input type="text" id="middle_name" value={data.middle_name} onChange={e => setData('middle_name', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} placeholder={user.middle_name} disabled={user.middle_name == null ? true : false}/>
+                                <input type="text" id="middle_name" value={data.middle_name} onChange={e => setData('middle_name', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} placeholder={user.middle_name}/>
                                 {errors.middle_name && <FormError error={errors.middle_name}/>}
                             </div>
                             <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                                <input type="text" id="last_name" value={data.last_name} onChange={e => setData('last_name', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} placeholder={user.last_name} disabled={user.middle_name == null ? true : false}/>
+                                <input type="text" id="last_name" value={data.last_name} onChange={e => setData('last_name', e.target.value)} className={`bg-transparent border ${user.middle_name == null ? 'border-cgray' : 'border-black'} rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize`} required={true} placeholder={user.last_name}/>
                                 {errors.last_name && <FormError error={errors.last_name}/>}
                             </div>
                             <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">

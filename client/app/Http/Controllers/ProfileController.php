@@ -17,9 +17,9 @@ class ProfileController extends Controller
 
     public function edit(){
         request()->validate([
-            'first_name' => ['max:255'],
-            'middle_name' => ['max:255'],
-            'last_name' => ['max:255'],
+            'first_name' => ['nullable','max:255'],
+            'middle_name' => ['nullable','max:255'],
+            'last_name' => ['nullable','max:255'],
             'birthday' => ['nullable'],
             'mobile' => [],
             'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:2048']
@@ -46,7 +46,7 @@ class ProfileController extends Controller
         }
 
         if (request()->filled('middle_name')) {
-            $user->first_name = request()->first_name;
+            $user->middle_name = request()->middle_name;
         }
 
         if (request()->filled('last_name')) {

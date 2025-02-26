@@ -9,6 +9,11 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
-        
+
     ],
+    // server: {
+    //     host: '192.168.1.5', // Exposes to local network
+    //     port: 5173, // Default Vite port
+    //     strictPort: true,
+    // }
 });

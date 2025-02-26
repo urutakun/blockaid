@@ -2,7 +2,6 @@ import React from 'react'
 import { AnimatePresence, motion  } from 'motion/react'
 import { useForm } from '@inertiajs/react'
 import FormError from './FormError'
-import { reset } from 'laravel-mix/src/Log'
 
 const EditData = ({ isEditClicked, setIsEditClicked, user, url}) => {
     const editUser = user && user;

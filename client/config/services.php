@@ -39,8 +39,4 @@ return [
         'key' => env('REACT_APP_WEATHER_API_KEY')
     ],
 
-    'weathermapapi' => [
-        'key' => env('REACT_APP_WEATHER_MAP_API_KEY')
-    ]
-
 ];

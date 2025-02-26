@@ -96,6 +96,9 @@ const MobileNav = ({ user, setIsClicked }) => {
                                     <MobileNavLink action="track" name="track relief" />
                                 </div>
                                 <div className="overflow-hidden py-2">
+                                    <MobileNavLink action="live-alert" name="live alert" />
+                                </div>
+                                <div className="overflow-hidden py-2">
                                     <MobileNavLink action="contact" name="contact us" />
                                 </div>
                             </>

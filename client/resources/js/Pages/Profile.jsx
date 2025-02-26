@@ -49,12 +49,14 @@ const Profile = () => {
                         </button>
                     </div>
                     <div className="qr">
-                        <QRCodeCanvas
-                            value={qr_data}
-                            size={250}
-                            fgcolor="#101010"
-                            bgColor="#F5F4F4"
-                        />
+                        {user.role === 'beneficiary' && (
+                            <QRCodeCanvas
+                                value={qr_data}
+                                size={250}
+                                fgcolor="#101010"
+                                bgColor="#F5F4F4"
+                            />
+                        )}
                     </div>
                 </div>
                 <div className="info mt-16 lg:mt-0 col-span-2 lg:col-span-1">
