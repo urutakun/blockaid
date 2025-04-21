@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\BdrrmUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,13 +13,20 @@ class ProfileController extends Controller
 {
 
     public function index(){
-        return inertia('Profile');
+        $user = Auth::user();
+
+        if ($user->role === 'beneficiary') {
+            $bdrrmUser = BdrrmUser::where('mobile', $user->mobile)->first();
+        } else {
+            $bdrrmUser = null;
+        }
+
+        return inertia('Profile', ['profile' => $bdrrmUser]);
     }
 
     public function edit(){
         request()->validate([
             'first_name' => ['nullable','max:255'],
-            'middle_name' => ['nullable','max:255'],
             'last_name' => ['nullable','max:255'],
             'birthday' => ['nullable'],
             'mobile' => [],
@@ -43,10 +51,6 @@ class ProfileController extends Controller
 
         if (request()->filled('first_name')) {
             $user->first_name = request()->first_name;
-        }
-
-        if (request()->filled('middle_name')) {
-            $user->middle_name = request()->middle_name;
         }
 
         if (request()->filled('last_name')) {

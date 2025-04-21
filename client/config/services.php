@@ -39,4 +39,8 @@ return [
         'key' => env('REACT_APP_WEATHER_API_KEY')
     ],
 
+    'smsapi' => [
+        'key' => env('REACT_APP_SMS_API_KEY')
+    ],
+
 ];

@@ -21,12 +21,10 @@ class AdminPanelController extends Controller
     }
 
     public function store(){
-        // dd(request());
-        // validate
+
         $validated = request()->validate([
             'first_name' => ['required', 'max:255'],
-            'middle_name' => ['nullable'],
-            'last_name' => ['nullable'],
+            'last_name' => ['required', 'max:255'],
             'mobile' => ['nullable'],
             'birthday' => ['nullable'],
             'email' => ['required', 'email'],
@@ -36,8 +34,7 @@ class AdminPanelController extends Controller
 
         User::create([
             'first_name' => $validated['first_name'],
-            'middle_name' => $validated['middle_name'] ?? null,
-            'last_name' => $validated['last_name'] ?? null,
+            'last_name' => $validated['last_name'],
             'mobile' => $validated['mobile'] ?? null,
             'birthday' => $validated['birthday'] ?? null,
             'email' => $validated['email'],
@@ -57,7 +54,6 @@ class AdminPanelController extends Controller
 
         request()->validate([
             'first_name' => ['nullable', 'max:255'],
-            'middle_name' => ['nullable', 'max:255'],
             'last_name' => ['nullable', 'max:255'],
             'email' => ['nullable', 'email'],
             'mobile' => ['nullable', 'digits:11'],
@@ -66,7 +62,7 @@ class AdminPanelController extends Controller
         ]);
 
         $user->update(array_filter(request()->only([
-            'first_name', 'middle_name', 'last_name', 'email', 'mobile', 'birthday', 'password'
+            'first_name', 'last_name', 'email', 'mobile', 'birthday', 'password'
         ])));
 
         $user->save();
@@ -82,6 +78,6 @@ class AdminPanelController extends Controller
         }
 
         $user->delete();
-            return Redirect::back()->with('success', 'Record Deleted Successfully');
+        return Redirect::back()->with('success', 'Record Deleted Successfully');
     }
 }

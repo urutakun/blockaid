@@ -74,13 +74,9 @@ const EditData = ({ isEditClicked, setIsEditClicked, user, url}) => {
                         {user?.role === 'beneficiary' && (
                             <>
                                 <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                                <input type="text" id="middle_name" value={data.middle_name} onChange={e => setData('middle_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder={editUser?.middle_name || ''}/>
-                                {errors.middle_name && <FormError error={errors.middle_name}/>}
-                            </div>
-                            <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                                <input type="text" id="last_name" value={data.last_name} onChange={e => setData('last_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder={editUser?.last_name || ''}/>
-                                {errors.last_name && <FormError error={errors.last_name}/>}
-                            </div>
+                                    <input type="text" id="last_name" value={data.last_name} onChange={e => setData('last_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder={editUser?.last_name || ''}/>
+                                    {errors.last_name && <FormError error={errors.last_name}/>}
+                                </div>
                             </>
                         )}
 

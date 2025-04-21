@@ -8,7 +8,7 @@ const developers = [
     {
         "id" : 2,
         "name" : "Walter Gagate",
-        "role" : "Lead Programmer",
+        "role" : "Lead Developer",
         "image" : "walter.png"
     },
     {

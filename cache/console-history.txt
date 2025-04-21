@@ -1,0 +1,5 @@
+await contract.getShipment("SP_762835")
+await contract.getShipment("SP_962218")
+const contract = await ethers.getContractAt("ReliefShipment", "0x5FbDB2315678afecb367f032d93F642f64180aa3");
+await contract.recordShipment(1, 10);  // Use valid shipment ID & quantity
+const contract = await ethers.getContractAt("ReliefShipment", "0x5FbDB2315678afecb367f032d93F642f64180aa3");

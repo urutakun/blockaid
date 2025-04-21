@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from "../components/Nav";
 import { Chart as ChartJS, ArcElement, CategoryScale, LineElement, PointElement, BarElement, LinearScale, Title, Tooltip, Legend } from "chart.js";
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
@@ -16,7 +16,14 @@ ChartJS.register(
   );
 
 
-const dswdDashboard = () => {
+const dswdDashboard = ({ shipment_total }) => {
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+        let running_total = 0;
+        shipment_total.forEach((num) => running_total += num);
+        setTotal(running_total);
+    }, [shipment_total])
 
 
     //* BAR GRAPH
@@ -103,14 +110,11 @@ const dswdDashboard = () => {
             <div className="content__wrapper px-6 mt-6">
                 <div className="grid grid-cols-3 gap-8 h-[300px]">
                     <div className="total__shipments col-span-3 lg:col-span-1 bg-cblack p-4 rounded-xl flex justify-center flex-col relative z-1">
-                        <div className="header text-gray-300 text-base absolute top-4 left-4">
-                            <p>Relief Goods Sent Count</p>
-                        </div>
                         <div className="body text-cwhite my-10 text-center">
-                            <div className="total__count text-6xl md:8xl lg:text-6xl font-bold text-center">
-                                <p>999,999,999</p>
+                            <div className="total__count text-5xl md:8xl lg:text-6xl font-bold text-center">
+                                <p>{total}</p>
                             </div>
-                            <p className='text-gray-500 mt-4'>Relief Goods Sent</p>
+                            <p className='text-base lg:text-xl text-gray-500 mt-4'>Relief Goods Sent</p>
                         </div>
                     </div>
                     <div className="yearly__shipments col-span-3 lg:col-span-2 mt-6 lg:mt-0">

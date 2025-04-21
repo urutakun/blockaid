@@ -5,21 +5,25 @@ import { QRCodeCanvas } from "qrcode.react";
 import { usePage } from "@inertiajs/react";
 import EditProfile from "./components/EditProfile";
 
-const Profile = () => {
+const Profile = ({ profile }) => {
     const { props } = usePage();
     const user = props.auth.user;
     const [isEditClicked, setIsEditClicked] = useState(false);
 
-    const full_name = `${user.first_name} ${user.middle_name !== null ? user.middle_name : ''} ${user.last_name !== null ? user.last_name : ''}`;
-    const date = new Date(user.birthday);
+    const admin_name = `${user.first_name} ${user.last_name !== null ? user.last_name : ''}`;
+    const date = new Date(profile?.birthday);
     const birthday = `${date.toLocaleString('en-US', {month: 'long'})} ${date.getDate()}, ${date.getFullYear()}`
 
-    const qr_data = JSON.stringify({
-        id: user.id,
-        name: full_name,
-        email: user.email,
-        birthday: user.birthday,
-        mobile: user.mobile,
+    const beneficiary_name = `${profile?.first_name} ${profile?.middle_name.slice(0,1)}. ${profile?.last_name}`;
+    const address = `${profile?.purok}, ${profile?.district}, ${profile?.barangay}, Bislig City`;
+
+    const qr_data = user.role === 'beneficiary' && JSON.stringify({
+        id: profile.id,
+        name: beneficiary_name,
+        email: profile.email,
+        birthday: profile.birthday,
+        mobile: profile.mobile,
+        district: profile.district
     });
 
     return (
@@ -32,7 +36,6 @@ const Profile = () => {
                 <div className="id flex flex-col justify-center items-center p-8 col-span-2 lg:col-span-1">
                     <div className="profile_image">
                         <div className="profile_image_wrapper overflow-hidden rounded-full w-[150px] h-[150px] md:w-[200px] md:h-[200px] mb-6 border border-gray-500">
-                            {/* FIX THE IMAGE IN THE NAV SECTION */}
                             <img
                                 src={user && `${window.location.origin}/storage/uploads/${user.image}`}
                                 alt="profile"
@@ -42,7 +45,7 @@ const Profile = () => {
                     </div>
                     <div className="details text-center space-y-4 mb-16">
                         <p className="text-5xl font-bold capitalize lg:px-10">
-                            {full_name}
+                            {user.role === 'beneficiary' ? beneficiary_name : admin_name }
                         </p>
                         <button className="px-4 py-1 text-base bg-clgreen rounded-full border border-cblack ctransition hover:bg-cgreen" onClick={() => setIsEditClicked(true)}>
                             Edit Profile
@@ -63,13 +66,19 @@ const Profile = () => {
                     <div className="info-block w-full mb-8">
                         <label htmlFor="name" className="mb-8">Name:</label>
                         <p id="name" className="capitalize py-2 border border-cblack rounded-lg px-2 mt-4">
-                            {full_name}
+                            {user.role === 'beneficiary' ? beneficiary_name : admin_name}
                         </p>
                     </div>
                     <div className="info-block w-full mb-8">
                         <label htmlFor="email" className="mb-8">Email:</label>
                         <p id="email" className="py-2 border border-cblack rounded-lg px-2 mt-4">
-                            {user.email}
+                            {user.role === 'beneficiary' ? profile.email : user.email}
+                        </p>
+                    </div>
+                    <div className={`info-block w-full mb-8 ${user.mobile == null ? 'hidden' : ''}`}>
+                        <label htmlFor="mobile" className="mb-8">Phone Number:</label>
+                        <p id="mobile" className="py-2 border border-cblack rounded-lg px-2 mt-4">
+                            {profile?.mobile}
                         </p>
                     </div>
                     <div className={`info-block w-full mb-8 ${user.birthday == null ? 'hidden' : ''}`}>
@@ -78,10 +87,16 @@ const Profile = () => {
                             {birthday}
                         </p>
                     </div>
-                    <div className={`info-block w-full mb-8 ${user.mobile == null ? 'hidden' : ''}`}>
-                        <label htmlFor="mobile" className="mb-8">Phone Number:</label>
+                    <div className={`info-block w-full mb-8 ${user.role != 'beneficiary' ? 'hidden' : 'block'}`}>
+                        <label htmlFor="mobile" className="mb-8">Address:</label>
                         <p id="mobile" className="py-2 border border-cblack rounded-lg px-2 mt-4">
-                            {user.mobile}
+                            {address}
+                        </p>
+                    </div>
+                    <div className={`info-block w-full mb-8 ${user.role != 'beneficiary' ? 'hidden' : 'block'}`}>
+                        <label htmlFor="mobile" className="mb-8">Sex:</label>
+                        <p id="mobile" className="py-2 border border-cblack rounded-lg px-2 mt-4">
+                            {profile?.sex}
                         </p>
                     </div>
                 </div>

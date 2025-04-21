@@ -3,7 +3,6 @@ import MobileNavLink from "./MobileNavLink";
 import Logo from "./Logo";
 import { useForm } from "@inertiajs/react";
 import { AnimatePresence, motion } from "motion/react";
-import { easeIn, easeInOut, easeOut } from "motion";
 
 const MobileNav = ({ user, setIsClicked }) => {
     const { post } = useForm();
@@ -82,14 +81,14 @@ const MobileNav = ({ user, setIsClicked }) => {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className={`mobile__nav w-full h-screen bg-cblack fixed inset-0 ctransition flex flex-col items-center md:hidden z-10 p-6 origin-top`}
+                className={`mobile__nav w-full h-full bg-cblack fixed inset-0 ctransition flex flex-col items-center md:hidden z-10 p-6 origin-top`}
             >
                <div className="header flex items-center justify-between w-full">
                 <Logo color='dark'/>
-                <div className="exit uppercase cursor-pointer hover:underline font-bold text-cwhite" onClick={handleCloseClick}><p>close</p></div>
+                <div className="exit text-base uppercase cursor-pointer hover:underline font-bold text-cwhite" onClick={handleCloseClick}><p>close</p></div>
                </div>
                     <ul
-                    className="mobile__nav-links text-6xl text-center font-bold font-font1Smbd space-y-8 mt-32 w-full px-14">
+                    className="mobile__nav-links text-4xl text-center font-bold font-font1Smbd space-y-8 mt-24 w-full px-14">
                         {(!user || (user && user.role === "beneficiary")) && (
                             <>
                                 <div className="overflow-hidden py-2">
@@ -99,7 +98,7 @@ const MobileNav = ({ user, setIsClicked }) => {
                                     <MobileNavLink action="live-alert" name="live alert" />
                                 </div>
                                 <div className="overflow-hidden py-2">
-                                    <MobileNavLink action="contact" name="contact us" />
+                                    <MobileNavLink action="contact-us" name="contact us" />
                                 </div>
                             </>
                         )}
@@ -139,6 +138,17 @@ const MobileNav = ({ user, setIsClicked }) => {
                             </div>
                         </>
                     )}
+                        {user && user.role == 'bdrrm' && (
+                        <>
+                            <div className="overflow-hidden py-2">
+                                <MobileNavLink name="request" action="bdrrm/request"/>
+                            </div>
+                            <div className="overflow-hidden py-2">
+                                <MobileNavLink name="reports" action="bdrrm/reports"/>
+                            </div>
+                        </>
+                    )}
+
                         {user && (
                             <>
                                 <div className="overflow-hidden py-2">
@@ -163,8 +173,8 @@ const MobileNav = ({ user, setIsClicked }) => {
                         )}
                     </ul>
 
-                <p className="text-sm text-center text-cwhite absolute left-1/2 -translate-x-1/2 bottom-8">
-                    &copy; Copyright {year} By Blockaid x uruta 💚
+                <p className="text-xs text-center text-gray-500 absolute left-1/2 -translate-x-1/2 bottom-8">
+                    &copy; Copyright {year} By Blockaid
                 </p>
             </motion.div>
     );

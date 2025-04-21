@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "./components/Nav";
+import axios from "axios";
+import { toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LiveAlert = ({ weather, alerts }) => {
   //* ALERTS
@@ -22,7 +25,41 @@ const LiveAlert = ({ weather, alerts }) => {
       instruction:
         "Residents in flood-prone areas should prepare for possible evacuations. Avoid crossing flooded roads. Stay updated through PAGASA and local authorities. Next update at 10:00 AM PHT Thursday.",
     },
+
   ]);
+
+  console.log(updatedAlert);
+
+
+  const [previousAlerts, setPreviousAlerts] = useState([]);
+  const [alertSent, setAlertSent] = useState(false);
+
+  const sendAlertMessage = (latestAlert) => {
+    if (!latestAlert) return;
+
+    const alertMessage = `BLOCKAID WEATHER ALERT: ${latestAlert.event} - ${latestAlert.areas}. ${latestAlert.desc} Instructions: ${latestAlert.instruction}`;
+
+    axios
+      .post("/notification/message", { message: alertMessage })
+      .then((res) => {
+        console.log("Alert Sent:", res.data);
+        setAlertSent((prev) => !prev);
+      })
+      .catch((err) => {
+        console.error("Error sending alert:", err);
+      });
+  };
+
+  useEffect(() => {
+    if (updatedAlert.length > 0) {
+      const latestAlert = updatedAlert[0];
+      // Check if this alert is new
+      if (!previousAlerts.includes(latestAlert.headline)) {
+        sendAlertMessage(latestAlert);
+        setPreviousAlerts([...previousAlerts, latestAlert.headline]);
+      }
+    }
+  }, [updatedAlert, setAlertSent]);
 
   //* FORECAST
   const today = weather.current;
@@ -50,9 +87,23 @@ const LiveAlert = ({ weather, alerts }) => {
     setHourlyForecast(weather.forecast.forecastday[0].hour);
   };
 
+
+
   return (
     <div>
       <Nav />
+       <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            pauseOnHover
+            theme="colored"
+            className="text-sm"
+        />
       <div className="forecast-container px-6 pb-6">
         <p className="font-bold text-3xl mt-8">Weather Forecast</p>
         <div className="forecast grid grid-cols-4 mt-4 gap-4">

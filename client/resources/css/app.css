@@ -17,6 +17,49 @@
     }
 
     .cheader {
-        @apply absolute left-1/2 top-14 -translate-y-1/2 md:-translate-y-0 md:-translate-x-0 -translate-x-1/2 md:top-6 md:left-6
+        @apply absolute -translate-y-0 -translate-x-0 top-6 left-6
     }
 }
+
+@media print {
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr__container {
+      page-break-before: always; /* Ensure each QR code starts on a new page */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: fit-content;
+      width: 350px;
+    }
+
+    .qr__container .qr {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .qr__container .header {
+        width: 100%;
+    }
+
+    .no-print {
+      display: none; /* Hide UI elements that shouldn't be printed */
+    }
+
+    .printable__area {
+        padding: 2rem !important;
+        font-size: 14px !important;
+    }
+    .report__container .exit {
+        display: none;
+    }
+  }

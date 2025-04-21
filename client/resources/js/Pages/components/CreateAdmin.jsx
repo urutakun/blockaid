@@ -5,9 +5,9 @@ import { AnimatePresence, motion } from 'motion/react';
 import { reset } from 'laravel-mix/src/Log';
 
 const CreateAdmin = ({ isRegisterClicked, setIsRegisterClicked }) => {
-    const { props } = usePage();
     const { data, setData, errors, post } = useForm({
         first_name : '',
+        last_name : '',
         email : '',
         role: '',
         password : '',
@@ -23,9 +23,6 @@ const CreateAdmin = ({ isRegisterClicked, setIsRegisterClicked }) => {
                     window.location.reload();
                 }, 2000)
             },
-            onError: (error) => {
-                console.log(error);
-                setIsRegisterClicked(false)},
         });
     }
 
@@ -41,15 +38,19 @@ const CreateAdmin = ({ isRegisterClicked, setIsRegisterClicked }) => {
                 initial={{opacity: 0, y: 10}}
                 animate={{opacity: 1, y: 0, transition: { duration: 0.3, ease: [0, 0.55, 0.45, 1]}}}
                 exit={{opacity: 0, y: 10}}
-                className="edit__container relative w-full h-full bg-cwhite md:w-[80vw] md:h-[70vh] lg:w-[40vw] md:rounded-xl flex flex-col justify-center" onClick={(e) => e.stopPropagation()}>
+                className="edit__container relative w-full h-full bg-cwhite md:w-[80vw] md:h-[80vh] lg:w-[40vw] md:rounded-xl flex flex-col justify-center" onClick={(e) => e.stopPropagation()}>
                     <div className="exit absolute top-4 right-4 bg-gray-500 rounded-full text-cwhite p-1" onClick={() => setIsRegisterClicked(false)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></svg>
                     </div>
                     <form className='mt-16 w-full px-[2rem] md:px-[6rem]'>
                         <p className='text-4xl md:text-2xl font-bold mb-10 cheader'>Register Admin</p>
                         <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
-                            <input type="text" id="first_name" value={data.first_name} onChange={e => setData('first_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder='Name'/>
+                            <input type="text" id="first_name" value={data.first_name} onChange={e => setData('first_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder='First Name'/>
                             {errors.first_name && <FormError error={errors.first_name}/>}
+                        </div>
+                        <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
+                            <input type="text" id="last_name" value={data.last_name} onChange={e => setData('last_name', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder='Last Name'/>
+                            {errors.last_name && <FormError error={errors.last_name}/>}
                         </div>
                         <div className="form-field flex flex-col col-span-2 md:col-span-1 mb-6">
                             <input type="text" id="email" value={data.email} onChange={e => setData('email', e.target.value)} className='bg-transparent border border-black rounded-lg focus:border-cgreen py-4 text-xl placeholder:capitalize' required={true} placeholder='Email'/>

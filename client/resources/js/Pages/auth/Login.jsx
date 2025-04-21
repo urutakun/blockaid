@@ -23,10 +23,10 @@ const Register = () => {
             </div> */}
             <HeroSlide />
         </div>
-        <div className="register__form h-screen flex justify-center items-center flex-col col-span-2 md:col-span-1">
+        <div className="login__form h-screen flex justify-center items-center flex-col col-span-2 md:col-span-1">
             <Logo color='light'/>
             <h1 className='text-5xl lg:text-6xl md:4xl font-bold font-font1Smbd mt-16'>Welcome Back!</h1>
-            <div className="blockaid__description text-center lg:mx-40 md:mx-38 mx-20 mt-8">
+            <div className="blockaid__description text-center text-sm lg:text-xl lg:mx-40 md:mx-38 mx-20 mt-8">
                 <p>BlockAid tracks relief with blockchain, ensuring transparent and efficient aid distribution.</p>
             </div>
             <form action="#" className='mt-16 w-full px-[2rem] md:px-[6rem]'>
@@ -40,8 +40,8 @@ const Register = () => {
                 </div>
 
                 <div className="form-field flex flex-col items-center mt-16">
-                    <input type="submit" value="Login" className='px-32 md:px-16 lg:px-36 mx-auto md:mx-0 bg-clgreen text-cblack w-fit rounded-lg border border-black hover:bg-cgreen hover:text-black ctransition cursor-pointer py-4 text-xl' required={true} onClick={(e) => handleSubmit(e)}/>
-                    <div className='flex items-center text-base mt-4'>Don't have an account yet? <a href="/register" className='ml-2 underline text-cgreen'>Register</a></div>
+                    <input type="submit" value="Login" className='px-20 md:px-16 lg:px-36 mx-auto md:mx-0 bg-clgreen text-cblack w-fit rounded-lg border border-black hover:bg-cgreen hover:text-black ctransition cursor-pointer py-4 text-xl' required={true} onClick={(e) => handleSubmit(e)}/>
+                    <div className='flex items-center text-sm lg:text-base mt-4'>Don't have an account yet? <a href="/register" className='ml-2 underline text-cgreen'>Register</a></div>
                 </div>
             </form>
         </div>

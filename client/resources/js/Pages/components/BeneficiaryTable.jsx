@@ -56,7 +56,7 @@ const Table = ( {beneficiaries} ) => {
                 </thead>
                 <tbody>
                         {beneficiaries.map((beneficiary, index) => {
-                            let beneficiary_full_name = `${beneficiary.last_name}, ${beneficiary.first_name}, ${beneficiary.middle_name.substring(0,1)}.`;
+                            let beneficiary_full_name = `${beneficiary.last_name}, ${beneficiary.first_name}.`;
                             let date = new Date(beneficiary.birthday);
                             let birthday = `${date.toLocaleString('en-US', {month: 'long'})} ${date.getDate()}, ${date.getFullYear()}`;
                             return (<tr className={`${index % 2 == 0 ? 'bg-gray-50' : 'bg-cwhite'} border-b border-gray-200 text-cblack`} key={index}>

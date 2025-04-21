@@ -34,7 +34,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className='text-cblack'>
+    <div className='text-cblack overflow-x-hidden'>
         <Nav />
         <div className="dashboard-content">
             <motion.div

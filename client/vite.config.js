@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
+import fs from "fs";
 
 export default defineConfig({
     plugins: [
@@ -11,9 +12,17 @@ export default defineConfig({
         react(),
 
     ],
-    // server: {
-    //     host: '192.168.1.5', // Exposes to local network
-    //     port: 5173, // Default Vite port
-    //     strictPort: true,
-    // }
+    server: {
+        https: {
+            key: fs.readFileSync('server.key'),
+            cert: fs.readFileSync('server.crt'),
+        },
+        host: '0.0.0.0',
+        port: 5173,
+        strictPort: true,
+        cors: true,
+        hmr: {
+            host: '192.168.1.7',
+        },
+      }
 });
